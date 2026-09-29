@@ -16,11 +16,20 @@ body,
 
 body {
   margin: 0;
-  background: #0a0d12;
+  background: #070c14;
   color: #e2e6ec;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(circle at 76% 8%, rgba(14, 116, 144, 0.12), transparent 28rem), radial-gradient(circle at 14% 88%, rgba(8, 145, 178, 0.07), transparent 24rem);
 }
+
+.bg-app { background: #070c14; }
+.sidebar-surface { background: linear-gradient(180deg, #071321 0%, #080f1a 100%); }
+.page-canvas { background-image: linear-gradient(rgba(34,211,238,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.018) 1px, transparent 1px); background-size: 48px 48px; }
+.shadow-glow-sm { box-shadow: 0 0 20px rgba(34,211,238,0.14); }
+.nav-active { background: linear-gradient(90deg, rgba(34,211,238,0.18), rgba(34,211,238,0.04)); box-shadow: inset 3px 0 0 #22d3ee, 0 0 22px rgba(34,211,238,0.08); }
+.promo-card { background: radial-gradient(circle at 90% 0%, rgba(34,211,238,0.18), transparent 8rem), linear-gradient(145deg, rgba(12, 53, 72, 0.7), rgba(12, 22, 34, 0.85)); }
+
 
 /* Scrollbars */
 *::-webkit-scrollbar {
@@ -62,8 +71,16 @@ body {
     @apply block text-xs font-semibold uppercase tracking-wider text-ink-300 mb-1.5;
   }
   .card {
-    @apply rounded-2xl bg-ink-900 border border-ink-800 shadow-card;
+    @apply rounded-2xl bg-ink-900/90 border border-ink-800/90 shadow-card;
+    background-image: linear-gradient(145deg, rgba(255,255,255,0.025), transparent 42%);
   }
+  .card:hover { border-color: rgba(34,211,238,0.22); }
+  table thead th { letter-spacing: 0.08em; font-size: 10px; color: #718096; }
+  table tbody tr { transition: background-color 160ms ease, box-shadow 160ms ease; }
+  table tbody tr:hover { background-color: rgba(34,211,238,0.045); box-shadow: inset 2px 0 0 rgba(34,211,238,0.75); }
+  button { -webkit-tap-highlight-color: transparent; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid rgba(34,211,238,0.7); outline-offset: 2px; }
+
   .badge {
     @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
   }

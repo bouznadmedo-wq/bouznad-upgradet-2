@@ -533,7 +533,7 @@ export default function HomePage() {
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-accent/10 text-accent">
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-accent/10 text-accent border border-accent/20 shadow-glow-sm">
             <Layers size={20} />
           </div>
           <div>
@@ -560,7 +560,7 @@ export default function HomePage() {
           {groups.map((g) => {
             const count = products.filter((p) => p.group_id === g.id).length;
             return (
-              <div key={g.id} className="group relative overflow-hidden rounded-2xl border border-ink-800 bg-ink-850 hover:border-accent/40 hover:bg-ink-800 transition-all">
+              <div key={g.id} className="group relative overflow-hidden rounded-2xl border border-ink-800/80 bg-ink-850/80 hover:border-accent/50 hover:shadow-[0_0_28px_-8px_rgba(34,211,238,0.45)] transition-all">
                 <button onClick={() => setSelectedGroup(g)} className="w-full text-left">
                   <div className="aspect-[4/3] relative overflow-hidden">
                     {g.image_url ? (
@@ -643,7 +643,7 @@ export default function HomePage() {
             {filteredGroupProducts.map((p) => {
               const out = p.quantity <= 0;
               return (
-                <div key={p.id} className={`rounded-xl border p-4 transition-all ${out ? 'border-ink-800 bg-ink-900/40 opacity-60' : 'border-ink-800 bg-ink-850 hover:border-accent/40 hover:bg-ink-800'}`}>
+                <div key={p.id} className={`rounded-xl border p-4 transition-all ${out ? 'border-ink-800/80 bg-ink-900/40 opacity-60' : 'border-ink-800/80 bg-ink-850/80 hover:border-accent/50 hover:bg-ink-800 hover:shadow-[0_0_20px_-6px_rgba(34,211,238,0.35)]'}`}>
                   <div className="flex items-start gap-3">
                     <div className="h-16 w-16 shrink-0 rounded-lg overflow-hidden border border-ink-800 bg-ink-900">
                       {p.image_url ? (

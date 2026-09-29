@@ -370,7 +370,7 @@ export default function POSPage() {
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2.5">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-accent/10 text-accent">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-accent/10 text-accent border border-accent/20 shadow-glow-sm">
                 <ScanLine size={18} />
               </div>
               <div>
@@ -422,7 +422,7 @@ export default function POSPage() {
         <div className="card p-5">
           <div className="flex flex-col sm:flex-row gap-3 mb-4">
             <div className="flex items-center gap-2.5">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-ink-800 text-ink-200">
+              <div className="grid h-9 w-9 place-items-center rounded-xl bg-ink-800 text-ink-200 border border-ink-700">
                 <Package size={18} />
               </div>
               <p className="font-semibold">Products</p>
@@ -478,7 +478,7 @@ export default function POSPage() {
                   onClick={() => addToCart(p)}
                   className={`text-left rounded-xl border p-3 transition-all ${
                     out ? 'border-ink-800 bg-ink-900/40 opacity-50 cursor-not-allowed'
-                        : 'border-ink-800 bg-ink-850 hover:border-accent/40 hover:bg-ink-800'
+                        : 'border-ink-800/80 bg-ink-850/80 hover:border-accent/50 hover:bg-ink-800 hover:shadow-[0_0_20px_-6px_rgba(34,211,238,0.35)]'
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -516,7 +516,7 @@ export default function POSPage() {
         {/* Header — fixed */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-ink-800 shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="grid h-9 w-9 place-items-center rounded-lg bg-accent/10 text-accent">
+            <div className="grid h-9 w-9 place-items-center rounded-xl bg-accent/10 text-accent border border-accent/20 shadow-glow-sm">
               <ShoppingCart size={18} />
             </div>
             <div>
@@ -556,7 +556,7 @@ export default function POSPage() {
               {cart.map((c, idx) => {
                 const prod = products.find((p) => p.id === c.product_id);
                 return (
-                <li key={idx} className="rounded-xl border border-ink-800 bg-ink-850 p-3.5 animate-fade-in">
+                <li key={idx} className="rounded-xl border border-ink-800/80 bg-ink-850/80 p-3.5 animate-fade-in hover:border-accent/30 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className="h-14 w-14 shrink-0 rounded-lg overflow-hidden border border-ink-800 bg-ink-900">
                       {prod?.image_url ? (
