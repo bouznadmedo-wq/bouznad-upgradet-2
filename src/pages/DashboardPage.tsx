@@ -162,22 +162,19 @@ export default function DashboardPage() {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Today's Revenue", value: `${revenueToday.toFixed(2)} DH`, sub: `${today.length} sales today`, trend: '+12%', icon: TrendingUp, color: 'text-success', glow: 'border-success-700/40 shadow-[0_0_24px_-8px_rgba(52,211,153,0.6)]', bg: 'bg-success-700/12' },
-          { label: 'This Week', value: `${revenueWeek.toFixed(2)} DH`, sub: `${thisWeek.length} sales this week`, trend: '+8%', icon: TrendingUp, color: 'text-accent', glow: 'border-accent/40 shadow-[0_0_24px_-8px_rgba(34,211,238,0.6)]', bg: 'bg-accent/12' },
-          { label: 'Avg. Sale', value: `${avgSale.toFixed(2)} DH`, sub: `${sales.length} total sales`, trend: '+3%', icon: ShoppingBag, color: 'text-warning', glow: 'border-warning/40 shadow-[0_0_24px_-8px_rgba(251,191,36,0.55)]', bg: 'bg-warning/12' },
-          { label: 'Stock Units', value: String(stockUnits), sub: `${productCount} products`, trend: `${lowStock} low`, icon: Boxes, color: 'text-ink-200', glow: 'border-ink-700 shadow-card', bg: 'bg-ink-800' },
+          { label: "Today's Revenue", value: `${revenueToday.toFixed(2)} DH`, sub: `${today.length} sales`, icon: TrendingUp, color: 'text-success', bg: 'bg-success-700/10' },
+          { label: 'This Week', value: `${revenueWeek.toFixed(2)} DH`, sub: `${thisWeek.length} sales`, icon: TrendingUp, color: 'text-accent', bg: 'bg-accent/10' },
+          { label: 'Avg. Sale', value: `${avgSale.toFixed(2)} DH`, sub: `${sales.length} total`, icon: ShoppingBag, color: 'text-warning', bg: 'bg-warning/10' },
+          { label: 'Stock Units', value: String(stockUnits), sub: `${productCount} products`, icon: Boxes, color: 'text-ink-200', bg: 'bg-ink-800' },
         ].map((s) => (
-          <div key={s.label} className={`card p-5 border ${s.glow} transition-transform hover:-translate-y-0.5`}>
+          <div key={s.label} className="card p-5">
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-xs font-medium text-ink-400">{s.label}</p>
+                <p className="text-xs text-ink-400">{s.label}</p>
                 <p className="mt-2 text-2xl font-bold font-mono">{loading ? '—' : s.value}</p>
-                <div className="mt-1.5 flex items-center gap-2">
-                  <span className={`badge ${s.bg} ${s.color} text-[10px]`}><ArrowUpRight size={10} /> {s.trend}</span>
-                  <span className="text-[11px] text-ink-500">{s.sub}</span>
-                </div>
+                <p className="mt-1 text-xs text-ink-400">{s.sub}</p>
               </div>
-              <div className={`grid h-11 w-11 place-items-center rounded-xl ${s.bg} ${s.color}`}>
+              <div className={`grid h-10 w-10 place-items-center rounded-xl ${s.bg} ${s.color}`}>
                 <s.icon size={20} />
               </div>
             </div>
@@ -189,10 +186,12 @@ export default function DashboardPage() {
         <div className="card p-5 lg:col-span-2">
           <div className="flex items-center justify-between mb-5">
             <div>
-              <p className="font-semibold tracking-tight">Revenue — Last 7 Days</p>
+              <p className="font-semibold">Revenue — Last 7 Days</p>
               <p className="text-xs text-ink-400 mt-0.5">Daily sales totals</p>
             </div>
-            <span className="badge bg-success-700/12 text-success border border-success-700/30"><span className="h-1.5 w-1.5 rounded-full bg-success pulse-glow" /> Live</span>
+            <div className="flex items-center gap-1.5 text-xs text-success">
+              <ArrowUpRight size={14} /> Live
+            </div>
           </div>
           <div className="flex items-end justify-between gap-2 h-48">
             {days.map((d, i) => (
