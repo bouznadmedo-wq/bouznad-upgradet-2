@@ -153,18 +153,15 @@ export default function UsersPage() {
 
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
         {[
-          { label: 'Total Users', value: String(profiles.length), icon: Users, color: 'text-accent', bg: 'bg-accent/10' },
-          { label: 'Admins', value: String(adminCount), icon: ShieldCheck, color: 'text-success', bg: 'bg-success-700/10' },
-          { label: 'Cashiers', value: String(profiles.length - adminCount), icon: UserCircle, color: 'text-warning', bg: 'bg-warning/10' },
+          { label: 'Total Users', value: String(profiles.length), sub: 'team members', icon: Users, color: 'text-accent', glow: 'border-accent/40 shadow-[0_0_24px_-8px_rgba(34,211,238,0.55)]', bg: 'bg-accent/12' },
+          { label: 'Admins', value: String(adminCount), sub: 'with full access', icon: ShieldCheck, color: 'text-success', glow: 'border-success-700/40 shadow-[0_0_24px_-8px_rgba(52,211,153,0.55)]', bg: 'bg-success-700/12' },
+          { label: 'Cashiers', value: String(profiles.length - adminCount), sub: 'front of store', icon: UserCircle, color: 'text-warning', glow: 'border-warning/40 shadow-[0_0_24px_-8px_rgba(251,191,36,0.5)]', bg: 'bg-warning/12' },
         ].map((s) => (
-          <div key={s.label} className="card p-4">
+          <div key={s.label} className={`card p-4 border ${s.glow} transition-transform hover:-translate-y-0.5`}>
             <div className="flex items-center justify-between">
-              <p className="text-xs text-ink-400">{s.label}</p>
-              <div className={`grid h-8 w-8 place-items-center rounded-lg ${s.bg} ${s.color}`}>
-                <s.icon size={16} />
-              </div>
+              <div><p className="text-xs font-medium text-ink-400">{s.label}</p><p className="mt-2 text-2xl font-bold font-mono">{loading ? '—' : s.value}</p><p className="mt-1 text-[11px] text-ink-500">{s.sub}</p></div>
+              <div className={`grid h-10 w-10 place-items-center rounded-xl ${s.bg} ${s.color}`}><s.icon size={18} /></div>
             </div>
-            <p className="mt-2 text-2xl font-bold font-mono">{loading ? '—' : s.value}</p>
           </div>
         ))}
       </div>

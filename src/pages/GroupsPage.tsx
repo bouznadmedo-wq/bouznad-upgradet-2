@@ -131,7 +131,7 @@ export default function GroupsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-accent/10 text-accent">
+        <div className="grid h-10 w-10 place-items-center rounded-xl bg-accent/10 text-accent border border-accent/20 shadow-glow-sm">
           <Layers size={20} />
         </div>
         <div>
@@ -150,7 +150,7 @@ export default function GroupsPage() {
       <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
         {/* Groups list */}
         <div className="space-y-3">
-          <div className="rounded-xl border border-ink-800 bg-ink-900 p-4">
+          <div className="rounded-2xl border border-ink-800/90 bg-ink-900/90 p-4 shadow-card">
             <div className="flex gap-2 mb-4">
               <input
                 className="input flex-1"
@@ -173,8 +173,8 @@ export default function GroupsPage() {
                   key={g.id}
                   className={`flex items-center gap-2 rounded-lg border px-3 py-2.5 transition-all cursor-pointer ${
                     selectedGroup === g.id
-                      ? 'border-accent bg-accent/10'
-                      : 'border-ink-800 bg-ink-850 hover:border-ink-700 hover:bg-ink-800'
+                      ? 'border-accent/60 bg-accent/10 shadow-[0_0_18px_-6px_rgba(34,211,238,0.5)]'
+                      : 'border-ink-800/80 bg-ink-850/80 hover:border-ink-700 hover:bg-ink-800'
                   }`}
                   onClick={() => setSelectedGroup(selectedGroup === g.id ? null : g.id)}
                 >
@@ -221,7 +221,7 @@ export default function GroupsPage() {
 
           {/* Unassigned products */}
           {unassignedProducts.length > 0 && (
-            <div className="rounded-xl border border-ink-800 bg-ink-900 p-4">
+            <div className="rounded-2xl border border-ink-800/90 bg-ink-900/90 p-4 shadow-card">
               <p className="text-xs font-semibold text-ink-400 mb-3">Unassigned Products ({unassignedProducts.length})</p>
               <div className="space-y-1.5 max-h-48 overflow-y-auto">
                 {unassignedProducts.map((p) => (
@@ -251,7 +251,7 @@ export default function GroupsPage() {
         </div>
 
         {/* Right panel: group products or search */}
-        <div className="rounded-xl border border-ink-800 bg-ink-900 p-4">
+        <div className="rounded-2xl border border-ink-800/90 bg-ink-900/90 p-4 shadow-card">
           {selectedGroup ? (
             <>
               <div className="flex items-center justify-between gap-2 mb-4">

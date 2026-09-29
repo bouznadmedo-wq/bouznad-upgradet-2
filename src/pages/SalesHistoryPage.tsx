@@ -79,16 +79,15 @@ export default function SalesHistoryPage() {
       {isAdmin && (
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
           {[
-            { label: 'Total Sales', value: String(sales.length), icon: Receipt, color: 'text-accent' },
-            { label: 'Avg. Sale', value: sales.length ? `${(sales.reduce((s, x) => s + x.total, 0) / sales.length).toFixed(2)} DH` : '0.00 DH', icon: Banknote, color: 'text-warning' },
-            { label: 'Total Revenue', value: `${sales.reduce((s, x) => s + x.total, 0).toFixed(2)} DH`, icon: CreditCard, color: 'text-success' },
+            { label: 'Total Sales', value: String(sales.length), sub: 'all time', icon: Receipt, color: 'text-accent', glow: 'border-accent/40 shadow-[0_0_24px_-8px_rgba(34,211,238,0.55)]', bg: 'bg-accent/12' },
+            { label: 'Avg. Sale', value: sales.length ? `${(sales.reduce((s, x) => s + x.total, 0) / sales.length).toFixed(2)} DH` : '0.00 DH', sub: 'per transaction', icon: Banknote, color: 'text-warning', glow: 'border-warning/40 shadow-[0_0_24px_-8px_rgba(251,191,36,0.5)]', bg: 'bg-warning/12' },
+            { label: 'Total Revenue', value: `${sales.reduce((s, x) => s + x.total, 0).toFixed(2)} DH`, sub: 'gross', icon: CreditCard, color: 'text-success', glow: 'border-success-700/40 shadow-[0_0_24px_-8px_rgba(52,211,153,0.55)]', bg: 'bg-success-700/12' },
           ].map((s) => (
-            <div key={s.label} className="card p-4">
+            <div key={s.label} className={`card p-4 border ${s.glow} transition-transform hover:-translate-y-0.5`}>
               <div className="flex items-center justify-between">
-                <p className="text-xs text-ink-400">{s.label}</p>
-                <s.icon size={16} className={s.color} />
+                <div><p className="text-xs font-medium text-ink-400">{s.label}</p><p className="mt-2 text-2xl font-bold font-mono">{s.value}</p><p className="mt-1 text-[11px] text-ink-500">{s.sub}</p></div>
+                <div className={`grid h-10 w-10 place-items-center rounded-xl ${s.bg} ${s.color}`}><s.icon size={18} /></div>
               </div>
-              <p className="mt-2 text-2xl font-bold font-mono">{s.value}</p>
             </div>
           ))}
         </div>
@@ -137,7 +136,7 @@ export default function SalesHistoryPage() {
                     <td className="px-4 py-3 hidden md:table-cell text-ink-300">{s.customer_name || 'Walk-in'}</td>
                     <td className="px-4 py-3 hidden sm:table-cell text-ink-300">{new Date(s.created_at).toLocaleString()}</td>
                     <td className="px-4 py-3 hidden lg:table-cell">
-                      <span className="badge bg-ink-800 text-ink-300 capitalize">{s.payment_method}</span>
+                      <span className={`badge capitalize ${s.payment_method === 'cash' ? 'bg-success-700/15 text-success border border-success-700/30' : 'bg-accent/10 text-accent border border-accent/30'}`}>{s.payment_method}</span>
                     </td>
                     <td className="px-4 py-3 text-right font-mono font-semibold">{s.total.toFixed(2)} DH</td>
                     <td className="px-4 py-3 text-right">
