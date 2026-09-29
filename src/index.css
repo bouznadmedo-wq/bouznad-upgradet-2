@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0a0d12;
+  color: #e2e6ec;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbars */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2c3645;
+  border-radius: 999px;
+  border: 2px solid #0a0d12;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #3a4656;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-150 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-ink-950 hover:bg-accent-400 shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn bg-ink-800 text-ink-100 hover:bg-ink-700 border border-ink-700;
+  }
+  .btn-danger {
+    @apply btn bg-danger-700 text-white hover:bg-danger-600;
+  }
+  .btn-success {
+    @apply btn bg-success-700 text-white hover:bg-success-600;
+  }
+  .input {
+    @apply w-full rounded-lg bg-ink-850 border border-ink-700 px-3.5 py-2.5 text-sm text-ink-100 placeholder-ink-400 outline-none transition-colors focus:border-accent focus:ring-2 focus:ring-accent/20;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-ink-300 mb-1.5;
+  }
+  .card {
+    @apply rounded-2xl bg-ink-900 border border-ink-800 shadow-card;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .table-row-hover {
+    @apply transition-colors hover:bg-ink-850;
+  }
+}
+
+@keyframes scanline {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+.scanline {
+  animation: scanline 2s linear infinite alternate;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(34,211,238,0); }
+}
+.pulse-glow {
+  animation: pulseGlow 1.6s ease-out infinite;
+}
+
+@media print {
+  @page {
+    size: auto;
+    margin: 8mm;
+  }
+  html, body {
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  button,
+  footer,
+  .bolt-watermark,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Receipt print: single page, centered */
+  body.printing-receipt * {
+    visibility: hidden !important;
+  }
+  body.printing-receipt .print-receipt,
+  body.printing-receipt .print-receipt * {
+    visibility: visible !important;
+  }
+  body.printing-receipt .print-receipt {
+    position: fixed !important;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 80mm !important;
+    max-width: 80mm !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    color: #171717 !important;
+    z-index: 99999 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 4mm !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  body.printing-receipt .no-print {
+    display: none !important;
+  }
+
+  /* Inventory print: single page, centered */
+  body.printing-inventory * {
+    visibility: hidden !important;
+  }
+  body.printing-inventory .print-inventory-overlay {
+    display: block !important;
+    visibility: visible !important;
+  }
+  body.printing-inventory .print-inventory-overlay,
+  body.printing-inventory .print-inventory-overlay * {
+    visibility: visible !important;
+  }
+  body.printing-inventory .print-inventory-overlay {
+    position: fixed !important;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: 190mm !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    color: #171717 !important;
+    z-index: 99999 !important;
+    padding: 4mm !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  body.printing-inventory table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  body.printing-inventory tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
